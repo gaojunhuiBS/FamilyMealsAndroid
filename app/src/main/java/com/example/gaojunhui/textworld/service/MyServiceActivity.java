@@ -22,6 +22,7 @@ public class MyServiceActivity extends BaseActivity {
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            
             myBinder = (MyService.MyBinder) iBinder;
             myBinder.startDownload();
             myBinder.getProgress();
@@ -74,8 +75,6 @@ public class MyServiceActivity extends BaseActivity {
      * 要同时调用stopService()和unBindService()方法
      * 才能使服务销毁，服务的onDestroy()方法才能运行
      *
-     *
-     * 
      */
     private void bindService() {
         RxView.clicks(btnBind)
