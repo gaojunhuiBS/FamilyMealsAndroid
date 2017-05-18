@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Litepal>
+    <dbname value="BookStore"/>
+    <version value="2"/>
+    <list>
+        <mapping class="com.example.gaojunhui.textworld.litepal.bean.Book"/>
+        <mapping class="com.example.gaojunhui.textworld.litepal.bean.Category"/>
+    </list>
+</Litepal>
