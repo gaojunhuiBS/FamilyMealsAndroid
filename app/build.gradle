@@ -23,13 +23,28 @@ android {
         jackOptions {
             enabled true
         }
+        // Specifies the ABI configurations of your native
+        // libraries Gradle should build and package with your APK.
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
     }
     buildTypes {
         release {
-            minifyEnabled false
+            buildConfigField "boolean", "DEBUG_MODE", "false"
+            minifyEnabled true //设置代码进行混淆
+            shrinkResources true //不打包未使用的资源
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //android studio默认so文件加载目录为:src/main/jniLibs
+    //    如在module的build.gradle按照如下方式,自定义了so文件加载目录请确保对应目录下只有armeabi目录
+//    sourceSets {
+//        main{
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
@@ -63,4 +78,5 @@ dependencies {
     compile 'com.king.thread:nevercrash:1.0.0'
     compile 'org.litepal.android:core:1.5.1'
     compile 'com.android.support:support-v4:26.0.0-alpha1'
+    compile 'com.yanzhenjie:permission:1.0.5'
 }
