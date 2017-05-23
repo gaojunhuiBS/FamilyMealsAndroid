@@ -37,6 +37,7 @@ public class MyServiceActivity extends BaseActivity {
     protected int getLayoutResID() {
         return R.layout.activity_service;
     }
+
     @Override
     protected void initView() {
         btnStart = (Button) findViewById(R.id.btn_start);
@@ -72,6 +73,7 @@ public class MyServiceActivity extends BaseActivity {
      * 若对一个服务同时调用了startService()和bindService(),
      * 要同时调用stopService()和unBindService()方法
      * 才能使服务销毁，服务的onDestroy()方法才能运行
+     *
      */
     private void bindService() {
         RxView.clicks(btnBind)
