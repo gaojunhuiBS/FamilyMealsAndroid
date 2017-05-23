@@ -58,7 +58,9 @@ public class X5TextActivity extends BaseActivity {
         @Override
         public void onSucceed(int requestCode, List<String> grantPermissions) {
             if (requestCode == 103) {
+
                 webView.loadUrl(url);
+                
             }
         }
 
