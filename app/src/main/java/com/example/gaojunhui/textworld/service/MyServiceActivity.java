@@ -22,7 +22,6 @@ public class MyServiceActivity extends BaseActivity {
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            
             myBinder = (MyService.MyBinder) iBinder;
             myBinder.startDownload();
             myBinder.getProgress();
