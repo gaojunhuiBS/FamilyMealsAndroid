@@ -1,9 +1,11 @@
 package com.example.gaojunhui.textworld;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.WindowManager;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 
@@ -25,12 +27,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutResID());
         ButterKnife.bind(this);
         init();
+        statusBar();
     }
     protected final void init() {
         initView();
         initData();
     }
-
+    private void statusBar() {
+        if (Build.VERSION.SDK_INT >= 19) {//4.4
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

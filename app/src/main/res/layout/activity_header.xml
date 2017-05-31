@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.gaojunhui.textworld.headerview.weight.TouchPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/touchPaneLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+        android:id="@id/fhvp_header"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/timg_proc"
+        />
+
+    <LinearLayout
+        android:id="@id/fhvp_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:translationY="220dp"
+        >
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            />
+
+        <view
+            class="android.support.v4.view.ViewPager"
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/head_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:title=" "
+        >
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:text="天王盖地虎"
+            />
+    </android.support.v7.widget.Toolbar>
+</com.example.gaojunhui.textworld.headerview.weight.TouchPanelLayout>
