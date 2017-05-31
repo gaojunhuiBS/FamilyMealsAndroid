@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.example.gaojunhui.textworld.pullzoomview.weight.PullZoomView
+        android:id="@+id/pzv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <include layout="@layout/include_header"/>
+
+            <include layout="@layout/include_scrollview"/>
+        </RelativeLayout>
+    </com.example.gaojunhui.textworld.pullzoomview.weight.PullZoomView>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        app:title=" "
+        >
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/ic_launcher"
+            />
+    </android.support.v7.widget.Toolbar>
+</RelativeLayout>

@@ -71,6 +71,18 @@
             android:name=".h5fullscreen.X5TextActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             >
+        </activity>
+        <activity android:name=".pullzoomview.PullViewActivity"/>
+        <activity android:name=".pullzoomview.PullViewGroupActivity"/>
+        <activity android:name=".pullzoomview.PullWebViewActivity"/>
+        <activity android:name=".pullzoomview.PullGridViewActivity"/>
+        <activity android:name=".pullzoomview.PullListViewActivity"/>
+        <activity android:name=".pullzoomview.PullMainActivity">
+
+        </activity>
+        <activity android:name=".pullzoomview.PullRecyclerViewActivity"/>
+        <activity android:name=".pullzoomview.PullScrollViewActivity"/>
+        <activity android:name=".headerview.HeaderViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
