@@ -22,6 +22,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class RVActivity extends AppCompatActivity implements XRefreshLayout.OnRefreshListener {
+
     RecyclerView rv;
     XRefreshLayout refresh;
     private Subscriber mSubscriber;
@@ -34,8 +35,8 @@ public class RVActivity extends AppCompatActivity implements XRefreshLayout.OnRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv);
         ButterKnife.bind(this);
-        rv= (RecyclerView) findViewById(R.id.rv);
-        refresh= (XRefreshLayout) findViewById(R.id.refresh);
+        rv = (RecyclerView) findViewById(R.id.rv);
+        refresh = (XRefreshLayout) findViewById(R.id.refresh);
         mLManager = new LinearLayoutManager(RVActivity.this);
         if (refresh != null) {
             refresh.setOnRefreshListener(this);
@@ -45,35 +46,32 @@ public class RVActivity extends AppCompatActivity implements XRefreshLayout.OnRe
 
     /**
      * 获取数据
-     * @param method
-     * @param page_num
-     * @param page_row
      */
     protected void getData(String method, int page_num, int page_row) {
         mSubscriber = (Subscriber) RestClient.instance().netService().getCircleHome(method, page_num, page_row, 0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(circleHomeEntity -> {
-                    mList = circleHomeEntity.data.data;
-                    if (mAdapter == null) {
-                        mAdapter = new RVAdapter(RVActivity.this, mList);
-                        if (rv != null) {
-                            rv.setLayoutManager(mLManager);
-                            rv.setAdapter(mAdapter);
-                        }
-                    } else {
-                        mAdapter.notifyDataSetChanged();
-                    }
-                    new Handler().postDelayed(() -> {
-                        if (refresh != null) {
-                            refresh.completeRefresh();
-                        }
-                    }, 2000);
-                }, throwable -> new Handler().postDelayed(() -> {
-                    if (refresh != null) {
-                        refresh.completeRefresh();
-                    }
-                }, 2000)
+                            mList = circleHomeEntity.data.data;
+                            if (mAdapter == null) {
+                                mAdapter = new RVAdapter(RVActivity.this, mList);
+                                if (rv != null) {
+                                    rv.setLayoutManager(mLManager);
+                                    rv.setAdapter(mAdapter);
+                                }
+                            } else {
+                                mAdapter.notifyDataSetChanged();
+                            }
+                            new Handler().postDelayed(() -> {
+                                if (refresh != null) {
+                                    refresh.completeRefresh();
+                                }
+                            }, 2000);
+                        }, throwable -> new Handler().postDelayed(() -> {
+                            if (refresh != null) {
+                                refresh.completeRefresh();
+                            }
+                        }, 2000)
                 );
     }
 
