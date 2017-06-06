@@ -6,14 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <ImageView
+    <!--<ImageView-->
+        <!--android:id="@id/fhvp_header"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="220dp"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@drawable/timg_proc"-->
+        <!--/>-->
+    <com.bigkoo.convenientbanner.ConvenientBanner
         android:id="@id/fhvp_header"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/timg_proc"
+        app:canLoop="true"
         />
-
     <LinearLayout
         android:id="@id/fhvp_content"
         android:layout_width="match_parent"
