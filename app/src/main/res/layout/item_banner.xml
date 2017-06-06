@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/item_banner_iv"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
 
     <TextView
@@ -15,12 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bannerViewPager"
-        android:layout_margin="@dimen/circleRoll_tv_margin"
         android:ellipsize="end"
         android:lineSpacingMultiplier="1.5"
         android:maxLines="2"
-        android:textColor="@color/common_text"
-        android:textSize="@dimen/circleRoll_tv_textSize"
         android:textStyle="bold"
         android:visibility="visible"
         />

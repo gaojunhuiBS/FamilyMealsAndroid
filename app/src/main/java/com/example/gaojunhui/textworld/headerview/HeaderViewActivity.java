@@ -10,10 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.gaojunhui.textworld.R;
 import com.example.gaojunhui.textworld.headerview.weight.IPagerScroll;
 import com.example.gaojunhui.textworld.headerview.weight.TouchPanelLayout;
-import com.example.gaojunhui.textworld.util.UIUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,8 @@ public class HeaderViewActivity extends AppCompatActivity implements TouchPanelL
     private List<Fragment> listFragments = new ArrayList<>();
     private List<String> listTitls = new ArrayList<>();
     private TabLayout tab;
+    private ConvenientBanner convenientBanner;
+    private List<Integer> listUrl = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ public class HeaderViewActivity extends AppCompatActivity implements TouchPanelL
     }
 
     protected void initView() {
+        convenientBanner = (ConvenientBanner) findViewById(R.id.fhvp_header);
         toolbar = (Toolbar) findViewById(R.id.head_toolbar);
         toolbar.post(() -> {
             toolBarHeight = toolbar.getMeasuredHeight();
@@ -60,6 +66,23 @@ public class HeaderViewActivity extends AppCompatActivity implements TouchPanelL
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), listFragments, listTitls);
         viewPager.setAdapter(adapter);
         tab.setupWithViewPager(viewPager);
+        listUrl.add(R.drawable.timg);
+        listUrl.add(R.drawable.timg_proc);
+        convenientBanner.setPages(new CBViewHolderCreator() {
+            @Override
+            public Object createHolder() {
+                return new NetworkImageHolderView();
+            }
+        }, listUrl)
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+                .setPageIndicator(new int[] {R.drawable.dot_roll_current, R.drawable.dot_roll})
+                .setScrollDuration(300);
+        convenientBanner.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(HeaderViewActivity.this, ""+position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void statusBar() {
@@ -76,7 +99,8 @@ public class HeaderViewActivity extends AppCompatActivity implements TouchPanelL
 
     @Override
     public float getActionBarHeight() {
-        return UIUtil.dip2px(this,60);
+        //return UIUtil.dip2px(this, 60);
+        return 0;
     }
 
     @Override

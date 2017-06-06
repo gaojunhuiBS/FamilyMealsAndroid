@@ -82,4 +82,5 @@ dependencies {
     compile files('libs/PackerNg-1.0.9.jar')
     /*快速打包*/
     compile 'com.mcxiaoke.gradle:packer-helper:1.0.9'
+    compile 'com.bigkoo:convenientbanner:2.0.5'
 }

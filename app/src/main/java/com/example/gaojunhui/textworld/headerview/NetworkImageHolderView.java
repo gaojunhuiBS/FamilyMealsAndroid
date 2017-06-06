@@ -1,4 +1,4 @@
-package com.nsg.zgbx.ui.adapter.circle;
+package com.example.gaojunhui.textworld.headerview;
 
 import android.content.Context;
 import android.text.TextPaint;
@@ -7,18 +7,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bigkoo.convenientbanner.holder.Holder;
-import com.nsg.zgbx.R;
-import com.nsg.zgbx.rest.entity.circle.RollDataEntity;
-import com.nsg.zgbx.utils.UIUtil;
-import com.nsg.zgbx.utils.glide.GlideHelper;
-import static com.nsg.zgbx.R.drawable.rolls_default;
+import com.example.gaojunhui.textworld.R;
 
 /**
  * Created by gaojunhui on 2017/3/1.
  * 轮播图的加载器
  */
 
-public class NetworkImageHolderView implements Holder<RollDataEntity> {
+public class NetworkImageHolderView implements Holder<Integer> {
     private View mView;
     private ImageView mImageView;
     private TextView mTextView;
@@ -33,14 +29,14 @@ public class NetworkImageHolderView implements Holder<RollDataEntity> {
     }
 
     @Override
-    public void UpdateUI(Context context,int position, RollDataEntity data) {
-        mTextView.setText(data.getTitle()!=null? data.getTitle():"");
-        GlideHelper.getInstance().loadImageByHeightAndWidth(context,
-                mImageView,
-                data.getLogo(),
-                rolls_default,
-                rolls_default,
-                UIUtil.getScreenWidth(context),
-                UIUtil.dip2px(context, 110));
+    public void UpdateUI(Context context,int position, Integer data) {
+        mImageView.setImageResource(data);
+        //GlideHelper.getInstance().loadImageByHeightAndWidth(context,
+        //        mImageView,
+        //        data.getLogo(),
+        //        rolls_default,
+        //        rolls_default,
+        //        UIUtil.getScreenWidth(context),
+        //        UIUtil.dip2px(context, 110));
     }
 }
