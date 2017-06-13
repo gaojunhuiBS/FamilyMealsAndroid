@@ -12,7 +12,6 @@ import org.litepal.LitePal;
 
 public class MyApplication extends Application {
     //这里我就不写管理类了,捡个懒,直接在 Application 中管理单例 Okhttp
-    //private OkHttpClient mOkHttpClient;
     @Override
     public void onCreate() {
         super.onCreate();

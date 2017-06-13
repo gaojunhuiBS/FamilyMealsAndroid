@@ -18,12 +18,17 @@ import com.example.gaojunhui.textworld.R;
 import com.example.gaojunhui.textworld.progressmanager.weight.CBProgressBar;
 import com.example.gaojunhui.textworld.progressmanager.weight.ImageLoadingView;
 import com.example.gaojunhui.textworld.rest.RestClient;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import me.jessyan.progressmanager.ProgressInfo;
 import me.jessyan.progressmanager.ProgressListener;
 import me.jessyan.progressmanager.ProgressManager;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -38,6 +43,7 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
             "https://raw.githubusercontent.com/JessYanCoding/MVPArmsTemplate/master/art/MVPArms.gif";
     public static final String UPLOAD_URL = "http://upload.qiniu.com/";
     private Button startGlide;
+    private Button startUpData;
     private ImageView imageView;
     private TextView progressTv;
     private ProgressBar progressBar;
@@ -63,6 +69,7 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         start = (Button) findViewById(R.id.start);
         startGlide = (Button) findViewById(R.id.start_glide);
+        startUpData= (Button) findViewById(R.id.start_up);
         loadView = (ImageLoadingView) findViewById(R.id.progress_load_view);
         cbProgressBar = (CBProgressBar) findViewById(R.id.my_progress);
         cbProgressBar.setMax(100);
@@ -72,6 +79,7 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
         //cbProgressBar.setRectRound(UIUtil.dip2px(this,200));
         start.setOnClickListener(this);
         startGlide.setOnClickListener(this);
+        startUpData.setOnClickListener(this);
         initListener();
     }
 
@@ -80,6 +88,8 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
         ProgressManager.getInstance().addResponseListener(IMAGE_URL, getGlideListener());
         //Okhttp/Retofit 下载监听
         ProgressManager.getInstance().addResponseListener(DOWNLOAD_URL, getDownloadListener());
+        //Okhttp/Retofit 上传监听
+        ProgressManager.getInstance().addRequestLisenter(UPLOAD_URL, getUploadListener());
     }
 
     @Override
@@ -95,6 +105,9 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.start_glide:
                 loadGlide();
+                break;
+            case R.id.start_up:
+                uploadStart();
                 break;
         }
     }
@@ -157,7 +170,69 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
             }
         };
     }
+    @NonNull
+    private ProgressListener getUploadListener() {
+        return new ProgressListener() {
+            @Override
+            public void onProgress(ProgressInfo progressInfo) {
+                // 如果你不屏蔽用户重复点击上传或下载按钮,就可能存在同一个 Url 地址,上一次的上传或下载操作都还没结束,
+                // 又开始了新的上传或下载操作,那现在就需要用到 id(请求开始时的时间) 来区分正在执行的进度信息
+                // 这里我就取最新的上传操作用来展示,顺便展示下 id 的用法
 
+                if (mLastUploadingingInfo == null) {
+                    mLastUploadingingInfo = progressInfo;
+                }
+
+                //因为是以请求开始时的时间作为 Id ,所以值越大,说明该请求越新
+                if (progressInfo.getId() < mLastUploadingingInfo.getId()) {
+                    return;
+                } else if (progressInfo.getId() > mLastUploadingingInfo.getId()) {
+                    mLastUploadingingInfo = progressInfo;
+                }
+                int progress = (int) ((100 * mLastUploadingingInfo.getCurrentbytes()) / mLastUploadingingInfo.getContentLength());
+                cbProgressBar.setProgress(progress);
+                progressTv.setText(progress + "%");
+                if (progress == 100) {
+                    cbProgressBar.setVisibility(View.GONE);
+                    //loadView.loadCompleted();
+                } else {
+                    cbProgressBar.setVisibility(View.VISIBLE);
+                }
+                Log.d("----", mLastUploadingingInfo.getId() + "--upload--" + progress + " %  " +mLastUploadingingInfo.getCurrentbytes() +"  "+mLastUploadingingInfo.getContentLength());
+            }
+        };
+    }
+
+    /**
+     * 点击开始上传资源,为了演示,就不做重复点击的处理,即允许用户在还有进度没完成的情况下,使用同一个 url 开始新的上传
+     */
+    private void uploadStart() {
+        File file = new File(getCacheDir(), "a.java");
+        try {
+            //读取Assets里面的数据,作为上传源数据
+            writeToFile(getAssets().open("a.java"), file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        final Request request = new Request.Builder()
+                .url(UPLOAD_URL)
+                .post(RequestBody.create(MediaType.parse("multipart/form-data"), file))
+                .build();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response response = mOkHttpClient.newCall(request).execute();
+                    response.body();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
     /**
      * 点击开始下载资源,为了演示,就不做重复点击的处理,即允许用户在还有进度没完成的情况下,使用同一个 url 开始新的下载
      */
@@ -214,5 +289,14 @@ public class ProgressActivity extends BaseActivity implements View.OnClickListen
                 centerCrop().
                 into(imageView);
     }
-
+    public static File writeToFile(InputStream in, File file) throws IOException {
+        FileOutputStream out = new FileOutputStream(file);
+        byte[] buf = new byte[1024];
+        int num = 0;
+        while ((num = in.read(buf)) != -1) {
+            out.write(buf, 0, buf.length);
+        }
+        out.close();
+        return file;
+    }
 }
