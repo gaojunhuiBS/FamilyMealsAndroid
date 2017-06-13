@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.gaojunhui.textworld">
+
     <uses-sdk
         android:minSdkVersion="15"
-        android:targetSdkVersion="25" />
+        android:targetSdkVersion="25"/>
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -20,7 +22,7 @@
     <!--手机震动权限-->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
     <application
         android:name=".myapplication.MyApplication"
         android:allowBackup="true"
@@ -83,12 +85,23 @@
         <activity android:name=".pullzoomview.PullRecyclerViewActivity"/>
         <activity android:name=".pullzoomview.PullScrollViewActivity"/>
         <activity android:name=".headerview.HeaderViewActivity">
+        </activity>
+
+        <activity android:name=".kotlin.KotlinActivity">
+        </activity>
+        <activity android:name=".progressmanager.ProgressActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".progressmanager.ProgressMActivity">
+
+        </activity>
+        <meta-data
+            android:name="com.example.gaojunhui.textworld.progressmanager.GlideConfiguration"
+            android:value="GlideModule"/>
     </application>
 
 </manifest>

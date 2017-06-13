@@ -1,7 +1,6 @@
 package com.example.gaojunhui.textworld.myapplication;
 
 import android.app.Application;
-
 import android.util.Log;
 import com.example.gaojunhui.textworld.textcrash.CustomActivityOnCrash;
 import com.tencent.smtt.sdk.QbSdk;
@@ -12,9 +11,13 @@ import org.litepal.LitePal;
  */
 
 public class MyApplication extends Application {
+    //这里我就不写管理类了,捡个懒,直接在 Application 中管理单例 Okhttp
+    //private OkHttpClient mOkHttpClient;
     @Override
     public void onCreate() {
         super.onCreate();
+        //this.mOkHttpClient = ProgressManager.getInstance().with(new OkHttpClient.Builder())
+        //        .build();
         CustomActivityOnCrash.install(this);
         LitePal.initialize(this);
         //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
@@ -36,4 +39,7 @@ public class MyApplication extends Application {
         //x5内核初始化接口
         QbSdk.initX5Environment(getApplicationContext(),  cb);
     }
+    //public OkHttpClient getOkHttpClient() {
+    //    return mOkHttpClient;
+    //}
 }
