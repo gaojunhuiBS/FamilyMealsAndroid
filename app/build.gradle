@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin:'kotlin-android-extensions'
 buildscript {
     repositories {
         jcenter()
@@ -23,8 +25,7 @@ android {
         jackOptions {
             enabled true
         }
-        // Specifies the ABI configurations of your native
-        // libraries Gradle should build and package with your APK.
+
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
@@ -38,17 +39,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    //android studio默认so文件加载目录为:src/main/jniLibs
-    //    如在module的build.gradle按照如下方式,自定义了so文件加载目录请确保对应目录下只有armeabi目录
-//    sourceSets {
-//        main{
-//            jniLibs.srcDirs = ['libs']
-//        }
-//    }
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
@@ -71,9 +69,9 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.king.thread:nevercrash:1.0.0'
     compile 'org.litepal.android:core:1.5.1'
@@ -83,4 +81,14 @@ dependencies {
     /*快速打包*/
     compile 'com.mcxiaoke.gradle:packer-helper:1.0.9'
     compile 'com.bigkoo:convenientbanner:2.0.5'
+    // kotlin
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.1'
+    // auto
+    compile 'org.jetbrains.anko:anko-sdk25:0.10.0-beta-1' // sdk15, sdk19, sdk21, sdk23 are also available
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.0-beta-1'
+    //Glide_Integration
+    compile 'com.github.bumptech.glide:glide:3.8.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    //get progress
+    compile 'me.jessyan:progressmanager:1.2.1'
 }

@@ -20,4 +20,13 @@
     <dimen name="customactivityoncrash_activity_vertical_margin">16dp</dimen>
 
     <dimen name="customactivityoncrash_error_activity_error_details_text_size">12sp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="percent_text_size_default">8sp</dimen>
+    <dimen name="percent_text_size_small">4sp</dimen>
+    <dimen name="percent_text_size_large">12sp</dimen>
+    <dimen name="percent_text_size">22sp</dimen>
+    <dimen name="round_width_default">6dp</dimen>
+    <dimen name="rect_round_default">1dp</dimen>
+    <dimen name="horizontal_corner">10dp</dimen>
 </resources>
