@@ -90,14 +90,16 @@
         <activity android:name=".kotlin.KotlinActivity">
         </activity>
         <activity android:name=".progressmanager.ProgressActivity">
+        </activity>
+        <activity android:name=".progressmanager.ProgressMActivity">
+
+        </activity>
+        <activity android:name=".textcache.CacheActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".progressmanager.ProgressMActivity">
-
         </activity>
         <meta-data
             android:name="com.example.gaojunhui.textworld.progressmanager.GlideConfiguration"
