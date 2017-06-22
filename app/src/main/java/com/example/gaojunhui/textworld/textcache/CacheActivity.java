@@ -75,7 +75,7 @@ public class CacheActivity extends BaseActivity {
             //if (prefser != null && list != null && list.size() > 0) {
             //    prefser.put(LIST_DATA, list);
             //}
-            aCache.put(LIST_DATA,arrayList,100);
+            aCache.put(LIST_DATA,arrayList,10);
         } else {
             //if (prefser != null &&
             //        (prefser.get(LIST_DATA, typeToken, list_default) != null) &&

@@ -19,10 +19,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 闪光灯权限 -->
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <!--手机震动权限-->
+    <!-- 手机震动权限 -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
     <uses-permission android:name="android.permission.GET_TASKS"/>
+
     <application
         android:name=".myapplication.MyApplication"
         android:allowBackup="true"
@@ -32,12 +33,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".toasty.CustomToastActivity"></activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".toasty.CustomToastActivity"/>
         <activity
             android:name=".bottomsheet.BottomSheetActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity android:name=".RVActivity">
         </activity>
@@ -71,8 +71,7 @@
         </activity>
         <activity
             android:name=".h5fullscreen.X5TextActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            >
+            android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
         <activity android:name=".pullzoomview.PullViewActivity"/>
         <activity android:name=".pullzoomview.PullViewGroupActivity"/>
@@ -80,30 +79,34 @@
         <activity android:name=".pullzoomview.PullGridViewActivity"/>
         <activity android:name=".pullzoomview.PullListViewActivity"/>
         <activity android:name=".pullzoomview.PullMainActivity">
-
         </activity>
         <activity android:name=".pullzoomview.PullRecyclerViewActivity"/>
         <activity android:name=".pullzoomview.PullScrollViewActivity"/>
         <activity android:name=".headerview.HeaderViewActivity">
         </activity>
-
         <activity android:name=".kotlin.KotlinActivity">
+
         </activity>
         <activity android:name=".progressmanager.ProgressActivity">
         </activity>
         <activity android:name=".progressmanager.ProgressMActivity">
-
         </activity>
         <activity android:name=".textcache.CacheActivity">
+        </activity>
+
+        <meta-data
+            android:name="com.example.gaojunhui.textworld.progressmanager.GlideConfiguration"
+            android:value="GlideModule"/>
+
+        <activity android:name=".kotlin.Kotlin2Activity">
+        </activity>
+        <activity android:name=".screen.TextScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="com.example.gaojunhui.textworld.progressmanager.GlideConfiguration"
-            android:value="GlideModule"/>
     </application>
 
 </manifest>

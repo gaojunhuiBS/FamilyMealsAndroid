@@ -23,7 +23,8 @@ import java.util.List;
 public class X5TextActivity extends BaseActivity {
     private X5WebView webView;
     private ProgressBar progressBar;
-    private String url="http://v.pptv.com/show/hly7OaEHd7WiaFX7kVA.html?rcc_id=wap_144";
+    //private String url="http://v.pptv.com/show/hly7OaEHd7WiaFX7kVA.html?rcc_id=wap_144";
+    private String url="http://csl.9hgame.com/video/2017_11/gzhfzcVSjssnyg2.mp4";
     //private String url = "http://www.baidu.com";
 
     @Override
