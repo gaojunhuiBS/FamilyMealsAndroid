@@ -12,8 +12,6 @@ import com.example.gaojunhui.textworld.rest.RestClient;
 import com.example.gaojunhui.textworld.util.LogUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import rx.android.schedulers.AndroidSchedulers;
@@ -32,7 +30,6 @@ public class PostFileActivity extends AppCompatActivity {
     private File file;
     private String path;
     private RequestBody requestBody;
-    private Map<String, RequestBody> map = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +50,6 @@ public class PostFileActivity extends AppCompatActivity {
         if (file != null) {
             requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         }
-        //map.clear();
-        //map.put(file.getName()+"",requestBody);
         LogUtils.logD("----", file.getName());
         RestClient.instance().fileService().postFile(file.getName(), requestBody)
                 .subscribeOn(Schedulers.io())
