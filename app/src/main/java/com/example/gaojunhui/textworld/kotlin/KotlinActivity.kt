@@ -115,6 +115,7 @@ class KotlinActivity : AppCompatActivity() {
      * 非空的属性在定义的时候必须初始化
      */
     lateinit var lateinitText:String
+
     /**
      *类
      * 1.如主构造函数没有注解或可见性说明

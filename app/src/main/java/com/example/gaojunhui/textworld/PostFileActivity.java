@@ -22,7 +22,9 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by gaojunhui on 2017/5/4.
+ * Retrofit2.0上传文件
  */
+
 
 public class PostFileActivity extends AppCompatActivity {
     private Button button;
