@@ -22,6 +22,7 @@ import javax.xml.datatype.Duration
 
 /**
  * Created by gaojunhui on 2017/6/7.
+ * kotlin
  */
 
 class KotlinActivity : AppCompatActivity() {
