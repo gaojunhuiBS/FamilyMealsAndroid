@@ -20,7 +20,6 @@ import rx.schedulers.Schedulers;
 /**
  * Created by gaojunhui on 2017/4/10.
  * Retrofit2.0
- *
  */
 
 public class RVActivity extends AppCompatActivity implements XRefreshLayout.OnRefreshListener {
