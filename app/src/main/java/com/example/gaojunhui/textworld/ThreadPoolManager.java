@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by gaojunhui on 2017/5/4.
+ * 线程池工具类
  */
 public class ThreadPoolManager {
     private ExecutorService service;
